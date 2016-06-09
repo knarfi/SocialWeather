@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 
 import com.framboos.socialweather.socialweather.R;
 
-public class IntroFragment extends Fragment {
+public class PhotoCommentsFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

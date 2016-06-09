@@ -19,42 +19,63 @@
     android:id="@+id/content"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/black"
+    android:background="@color/white"
     android:fillViewport="false">
+
+    <com.framboos.socialweather.socialweather.utils.VerticalViewPager
+        android:id="@+id/vertical_photo_view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"></com.framboos.socialweather.socialweather.utils.VerticalViewPager>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="photo view"
+        android:id="@+id/textView3"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="113dp" />
 
     <!-- This image view is an overlay and will display the blurry photo. This object has
          alpha=0.8 to allow it to blend in with the black of the view. In iOS, the image gets
          a lot darker and this seems an easy way to simulate the same behaviour in Android. -->
+
+    <!--
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
         android:alpha="0.5"
         android:id="@+id/blurredPhoto" />
+    -->
 
     <!-- This image view will display the original photo. The fragment controller will lower this
          object's alpha to allow for the blurry view underneath it to peek through. -->
+
+    <!--
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:src="@drawable/sunsetreebackground420blazeit"
         android:scaleType="centerCrop"
         android:id="@+id/originalPhoto" />
+    -->
 
-    <!-- This scroll view holds the elements that we actually want to be able to scroll around -->
+    <!-- This scroll view holds the elements that we actually want to be able to scroll around
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/scroll_view">
 
-        <!-- We'll make use of a LinearLayout thingy to enable us to have multiple views
-             under each other without having to worry about doing layout constraints and such -->
+        <!- We'll make use of a LinearLayout thingy to enable us to have multiple views
+             under each other without having to worry about doing layout constraints and such
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content">
 
-            <!-- We'll use this to fill in the scroll view, for demo purposes -->
+            <!- We'll use this to fill in the scroll view, for demo purposes
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="1800dp"
@@ -66,5 +87,6 @@
         </LinearLayout>
         
     </android.support.v4.widget.NestedScrollView>
+    -->
 
 </RelativeLayout>
