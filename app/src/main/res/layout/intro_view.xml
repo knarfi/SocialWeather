@@ -10,5 +10,6 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="IntroView"
         android:id="@+id/textView"
-        android:layout_gravity="center_horizontal" />
+        android:layout_gravity="center_horizontal"
+        android:paddingTop="30dp" />
 </LinearLayout>
