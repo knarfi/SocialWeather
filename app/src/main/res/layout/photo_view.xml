@@ -55,17 +55,16 @@
             android:layout_height="wrap_content">
 
             <!-- We'll use this to fill in the scroll view, for demo purposes -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="1800dp"
+                android:height="1800dp"
+                android:id="@+id/upperFill"
+                android:orientation="horizontal"
+                android:layout_alignParentStart="true" />
 
         </LinearLayout>
         
     </android.support.v4.widget.NestedScrollView>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="1800dp"
-        android:height="1800dp"
-        android:id="@+id/upperFill"
-        android:orientation="horizontal"
-        android:layout_alignParentStart="true" />
 
 </RelativeLayout>
