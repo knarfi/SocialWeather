@@ -50,7 +50,7 @@ public class PhotoFragment extends Fragment {
                 final Bitmap originalBitmap = ((BitmapDrawable) originalImageView.getDrawable()).getBitmap();
 
                 // Blur the image
-                final Bitmap blurredBitmap = Blurrable.blurRenderScript(getContext(), originalBitmap, 25);
+                final Bitmap blurredBitmap = Blurrable.fastblur(originalBitmap, 0.5f, 20);
 
                 // We can only touch view objects through the main thread. As we're blurring this
                 // stuff in another thread (it's not fast enough so we have to offload it),
