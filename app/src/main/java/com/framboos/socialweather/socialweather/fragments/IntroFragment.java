@@ -1,6 +1,8 @@
 package com.framboos.socialweather.socialweather.fragments;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -10,8 +12,10 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.framboos.socialweather.socialweather.R;
+import com.framboos.socialweather.socialweather.activities.PostActivity;
 
 public class IntroFragment extends Fragment {
+    private final int REQUEST_IMAGE_CAPTURE = 1;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -22,18 +26,36 @@ public class IntroFragment extends Fragment {
 
         uploadButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                // Perform action on click
-                Log.v("IntoFragment","Click detected");
-                Intent intent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-                startActivityForResult(intent,0);
+                makePhoto();
             }
         });
-
 
         // Return an instance of the intro view so it'll be the root view for this fragment
         return view;
     }
 
 
+    public void makePhoto() {
+        Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+
+        if (cameraIntent.resolveActivity(getActivity().getPackageManager()) != null) {
+            startActivityForResult(cameraIntent, REQUEST_IMAGE_CAPTURE);
+            Log.v("Camera", "Working");
+        }
+    }
+
+
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == Activity.RESULT_OK) {
+            Bundle extras = data.getExtras();
+            Bitmap imageBitmap = (Bitmap) extras.get("data");
+
+            Intent intent = new Intent(getActivity(), PostActivity.class);
+            intent.putExtra("data", imageBitmap);
+            startActivity(intent);
+        }
+    }
 
 }
