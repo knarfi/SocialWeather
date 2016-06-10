@@ -72,12 +72,14 @@ public class VerticalViewPager extends ViewPager {
         return ev;
     }
 
-    //@Override
-    //public boolean onInterceptTouchEvent(MotionEvent ev){
+    @Override
+    public boolean onInterceptTouchEvent(MotionEvent ev){
     //    boolean intercepted = super.onInterceptTouchEvent(swapXY(ev));
     //    swapXY(ev); // return touch coordinates to original reference frame for any child views
     //    return intercepted;
-    //}
+
+        return false;
+    }
 
     @Override
     public boolean onTouchEvent(MotionEvent ev) {
