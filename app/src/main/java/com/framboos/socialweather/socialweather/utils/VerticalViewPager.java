@@ -23,6 +23,12 @@ public class VerticalViewPager extends ViewPager {
     }
 
     private void init() {
+        // makes it that you will always see 750 units(?) of the previous fragment.
+        // which in this vertical viewpager with only 2 fragments is the upper framgent, the
+        // information of a photo.
+        this.setClipToPadding(false);
+        this.setPadding(0, 750, 0, 0);
+
         // The majority of the magic happens here
         setPageTransformer(true, new VerticalPageTransformer());
     }
@@ -43,7 +49,6 @@ public class VerticalViewPager extends ViewPager {
 
         @Override
         public void transformPage(View view, float position) {
-
             if (position < -1) { // [-Infinity,-1)
                 // This page is way off-screen to the left.
                 view.setAlpha(0);

@@ -8,6 +8,9 @@ import com.framboos.socialweather.socialweather.fragments.CommentsFragment;
 import com.framboos.socialweather.socialweather.fragments.PhotoFragment;
 
 public class GalleryPhotoPagerAdapter extends FragmentStatePagerAdapter {
+    private int PHOTO_FRAGMENT = 0;
+    private int PHOTO_COMMENT_FRAGMENT = 1;
+
     PhotoFragment photoFragment = new PhotoFragment();
     CommentsFragment photoCommentsFragment = new CommentsFragment();
 
@@ -18,7 +21,7 @@ public class GalleryPhotoPagerAdapter extends FragmentStatePagerAdapter {
     @Override
     public Fragment getItem(int position) {
         // TODO: fetch this from a shared data model instance
-        return (position == 0) ? photoFragment : photoCommentsFragment;
+        return (position == PHOTO_FRAGMENT) ? photoFragment : photoCommentsFragment;
     }
 
     @Override
