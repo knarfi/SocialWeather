@@ -57,5 +57,4 @@ public class IntroFragment extends Fragment {
             startActivity(intent);
         }
     }
-
 }

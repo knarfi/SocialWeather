@@ -1,0 +1,35 @@
+<!-- Represents a fragment of the gallery viewpager. -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/content"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black"
+    android:fillViewport="false">
+
+    <!-- This image view is an overlay and will display the blurry photo. This object has
+         alpha=0.6 to allow it to blend in with the black of the view. In iOS, the image gets
+         a lot darker and this seems an easy way to simulate the same behaviour in Android. -->
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:alpha="0.6"
+        android:id="@+id/blurredPhoto" />
+
+    <!-- This image view will display the original photo. The fragment controller will lower this
+         object's alpha to allow for the blurry view underneath it to peek through. -->
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/sunsetreebackground420blazeit"
+        android:scaleType="centerCrop"
+        android:id="@+id/originalPhoto" />
+
+    <!-- The viewpager that holds the photo information and its comments -->
+    <com.framboos.socialweather.socialweather.utils.VerticalViewPager
+        android:id="@+id/vertical_photo_view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"></com.framboos.socialweather.socialweather.utils.VerticalViewPager>
+
+</RelativeLayout>

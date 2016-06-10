@@ -9,9 +9,6 @@ import android.widget.ImageView;
 
 import com.framboos.socialweather.socialweather.R;
 
-/**
- * Created by mark on 10/06/16.
- */
 public class PostActivity extends Activity {
 
     private Bitmap imageBitmap;
@@ -32,7 +29,7 @@ public class PostActivity extends Activity {
         postImage.setOnClickListener(new View.OnClickListener() {
             //@Override
             public void onClick(View v) {
-                Intent intent = new Intent(PostActivity.this, PhotoContainerActivity.class);
+                Intent intent = new Intent(PostActivity.this, PhotoGalleryContainerActivity.class);
                 startActivity(intent);
             }
         });

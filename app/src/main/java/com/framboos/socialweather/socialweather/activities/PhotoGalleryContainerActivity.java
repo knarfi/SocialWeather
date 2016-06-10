@@ -9,22 +9,22 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 
 import com.framboos.socialweather.socialweather.R;
-import com.framboos.socialweather.socialweather.fragments.PhotoFragment;
 import com.framboos.socialweather.socialweather.fragments.IntroFragment;
+import com.framboos.socialweather.socialweather.fragments.GalleryPhotoFragment;
 
-public class PhotoContainerActivity extends FragmentActivity {
+public class PhotoGalleryContainerActivity extends FragmentActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // The photo_container_view is a placeholder view, which will get filled by a ViewPager
+        // The photo_gallery_container_view is a placeholder view, which will get filled by a ViewPager
         // which will enable us to show multiple views by swiping left/right.
-        this.setContentView(R.layout.photo_container_view);
+        this.setContentView(R.layout.photo_gallery_container_view);
 
         // We need to set up a ViewPager that will handle the user's touch events, such as
         // swiping left and right, to switch pages.
-        ViewPager pagerView = (ViewPager) findViewById(R.id.photo_container_view);
+        ViewPager pagerView = (ViewPager) findViewById(R.id.photo_gallery_container_view);
 
         // The ViewPager needs an adapter that returns the pages that are available.
         // This is something like a delegate in iOS. Let's set it up:
@@ -50,7 +50,7 @@ public class PhotoContainerActivity extends FragmentActivity {
         @Override
         public Fragment getItem(int position) {
             // TODO: fetch this from a shared data model instance
-            return (position == 0) ? this.introFragment : new PhotoFragment();
+            return (position == 0) ? this.introFragment : new GalleryPhotoFragment();
         }
 
         @Override
