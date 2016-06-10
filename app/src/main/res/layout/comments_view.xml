@@ -10,5 +10,6 @@
         android:text="comments container view"
         android:id="@+id/textView2"
         android:layout_gravity="center_horizontal"
-        android:paddingTop="30dp" />
+        android:paddingTop="30dp"
+        android:textColor="@color/white" />
 </LinearLayout>

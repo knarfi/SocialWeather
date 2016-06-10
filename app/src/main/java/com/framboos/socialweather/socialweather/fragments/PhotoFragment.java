@@ -1,26 +1,13 @@
 package com.framboos.socialweather.socialweather.fragments;
 
-import android.content.res.Resources;
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
-import android.os.Handler;
-import android.os.Looper;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
-import android.support.v4.view.PagerAdapter;
-import android.support.v4.widget.NestedScrollView;
 import android.util.Log;
-import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 
 import com.framboos.socialweather.socialweather.R;
-import com.framboos.socialweather.socialweather.activities.VerticalPhotoContainerActivity;
-import com.framboos.socialweather.socialweather.utils.Blurrable;
-import com.framboos.socialweather.socialweather.utils.VerticalViewPager;
 
 public class PhotoFragment extends Fragment {
 
@@ -28,13 +15,7 @@ public class PhotoFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Return an instance of the photo view for it to be the root view for this fragment
-        View cal = inflater.inflate(R.layout.photo_container_view2, container, false);
-
-        VerticalViewPager pagerView = (VerticalViewPager) findViewById(R.id.vertical_photo_view_pager);
-        PagerAdapter pagerAdapter = new VerticalPhotoContainerActivity.ScreenSlidePagerAdapter(getSupportFragmentManager());
-        pagerView.setAdapter(pagerAdapter);
-
-        return cal;
+        return inflater.inflate(R.layout.photo_view, container, false);
     }
 
     /*

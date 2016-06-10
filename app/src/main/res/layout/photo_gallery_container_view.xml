@@ -3,7 +3,7 @@
     android:layout_height="match_parent">
 
     <android.support.v4.view.ViewPager
-        android:id="@+id/photo_container_view"
+        android:id="@+id/photo_gallery_container_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentBottom="true"></android.support.v4.view.ViewPager>
