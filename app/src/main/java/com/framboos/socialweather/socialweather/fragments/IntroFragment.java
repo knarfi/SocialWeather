@@ -4,7 +4,9 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,14 +22,21 @@ public class IntroFragment extends Fragment {
 
         ViewPager introContainer = (ViewPager) result.findViewById(R.id.intro_container_view);
         introContainer.setAdapter(new ScreenSlidePagerAdapter(getChildFragmentManager()));
+        introContainer.setCurrentItem(2);
 
         return result;
     }
 
-    private class ScreenSlidePagerAdapter extends FragmentStatePagerAdapter {
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        Log.w("shit got real", "yeash!");
+    }
+
+    public class ScreenSlidePagerAdapter extends FragmentStatePagerAdapter {
         IntroPart1Fragment introPart1Fragment = new IntroPart1Fragment();
         IntroPart2Fragment introPart2Fragment = new IntroPart2Fragment();
         IntroPart3Fragment introPart3Fragment = new IntroPart3Fragment();
+        LoginFragment loginFragment = new LoginFragment();
 
         public ScreenSlidePagerAdapter(FragmentManager fm) {
             super(fm);
@@ -42,6 +51,8 @@ public class IntroFragment extends Fragment {
                     return introPart2Fragment;
                 case 2:
                     return introPart3Fragment;
+                case 3:
+                    return loginFragment;
                 default:
                     return null;
             }
@@ -49,10 +60,8 @@ public class IntroFragment extends Fragment {
 
         @Override
         public int getCount() {
-            return 3;
+            return 4;
         }
-
-
     }
 
     public static class IntroPart1Fragment extends Fragment {

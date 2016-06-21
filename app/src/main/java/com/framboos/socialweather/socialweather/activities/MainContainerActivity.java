@@ -26,6 +26,7 @@ public class MainContainerActivity extends FragmentActivity {
 
         PagerAdapter pagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
         mainContainer.setAdapter(pagerAdapter);
+        //mainContainer.setCurrentItem(1); //if not first start up
     }
 
     private class ScreenSlidePagerAdapter extends FragmentStatePagerAdapter {
