@@ -1,60 +1,81 @@
 package com.framboos.socialweather.socialweather.fragments;
 
-import android.app.Activity;
-import android.content.Intent;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
 import com.framboos.socialweather.socialweather.R;
-import com.framboos.socialweather.socialweather.activities.PostActivity;
 
 public class IntroFragment extends Fragment {
-    private final int REQUEST_IMAGE_CAPTURE = 1;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.intro_view, container, false);
+        View result = inflater.inflate(R.layout.intro_view, container, false);
 
-        Button uploadButton = (Button) view.findViewById(R.id.action_upload);
+        ViewPager introContainer = (ViewPager) result.findViewById(R.id.intro_container_view);
+        introContainer.setAdapter(new ScreenSlidePagerAdapter(getChildFragmentManager()));
 
-        uploadButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                makePhoto();
-            }
-        });
-
-        // Return an instance of the intro view so it'll be the root view for this fragment
-        return view;
+        return result;
     }
 
+    private class ScreenSlidePagerAdapter extends FragmentStatePagerAdapter {
+        IntroPart1Fragment introPart1Fragment = new IntroPart1Fragment();
+        IntroPart2Fragment introPart2Fragment = new IntroPart2Fragment();
+        IntroPart3Fragment introPart3Fragment = new IntroPart3Fragment();
 
-    public void makePhoto() {
-        Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+        public ScreenSlidePagerAdapter(FragmentManager fm) {
+            super(fm);
+        }
 
-        if (cameraIntent.resolveActivity(getActivity().getPackageManager()) != null) {
-            startActivityForResult(cameraIntent, REQUEST_IMAGE_CAPTURE);
-            Log.v("Camera", "Working");
+        @Override
+        public Fragment getItem(int position) {
+            switch(position) {
+                case 0:
+                    return introPart1Fragment;
+                case 1:
+                    return introPart2Fragment;
+                case 2:
+                    return introPart3Fragment;
+                default:
+                    return null;
+            }
+        }
+
+        @Override
+        public int getCount() {
+            return 3;
+        }
+
+
+    }
+
+    public static class IntroPart1Fragment extends Fragment {
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                                 Bundle savedInstanceState) {
+            return inflater.inflate(R.layout.intro_view_part1, container, false);
         }
     }
 
+    public static class IntroPart2Fragment extends Fragment {
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                                 Bundle savedInstanceState) {
+            return inflater.inflate(R.layout.intro_view_part2, container, false);
+        }
+    }
 
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == Activity.RESULT_OK) {
-            Bundle extras = data.getExtras();
-            Bitmap imageBitmap = (Bitmap) extras.get("data");
-
-            Intent intent = new Intent(getActivity(), PostActivity.class);
-            intent.putExtra("data", imageBitmap);
-            startActivity(intent);
+    public static class IntroPart3Fragment extends Fragment {
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                                 Bundle savedInstanceState) {
+            return inflater.inflate(R.layout.intro_view_part3, container, false);
         }
     }
 }

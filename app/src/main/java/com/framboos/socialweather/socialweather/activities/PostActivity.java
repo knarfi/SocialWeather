@@ -29,7 +29,7 @@ public class PostActivity extends Activity {
         postImage.setOnClickListener(new View.OnClickListener() {
             //@Override
             public void onClick(View v) {
-                Intent intent = new Intent(PostActivity.this, PhotoGalleryContainerActivity.class);
+                Intent intent = new Intent(PostActivity.this, MainContainerActivity.class);
                 startActivity(intent);
             }
         });
