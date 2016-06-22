@@ -49,11 +49,18 @@ public class MenuFragment extends Fragment {
         });
 
         Button loginButton = (Button) view.findViewById(R.id.action_login);
-        final FragmentManager fm = getChildFragmentManager();
         loginButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                mainContainer.setCurrentItem(0, false);
-                introContainer.setCurrentItem(0, true);
+                IntroFragment.toFragment = 3;
+                mainContainer.setCurrentItem(0, true);
+            }
+        });
+
+        Button tutorialButton = (Button) view.findViewById(R.id.action_tutorial);
+        tutorialButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                IntroFragment.toFragment = 0;
+                mainContainer.setCurrentItem(0, true);
             }
         });
 

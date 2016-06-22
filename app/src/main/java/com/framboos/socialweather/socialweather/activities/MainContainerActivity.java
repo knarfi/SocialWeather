@@ -1,5 +1,6 @@
 package com.framboos.socialweather.socialweather.activities;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -16,17 +17,48 @@ import com.framboos.socialweather.socialweather.fragments.*;
 import com.framboos.socialweather.socialweather.utils.MainContainerViewPager;
 
 public class MainContainerActivity extends FragmentActivity {
+    public static final String PREFS_NAME = "SocialWeatherPrefsFile";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         this.setContentView(R.layout.main_view);
-        MainContainerViewPager mainContainer = (MainContainerViewPager) findViewById(R.id.main_container_view);
+        final MainContainerViewPager mainContainer = (MainContainerViewPager) findViewById(R.id.main_container_view);
 
-        PagerAdapter pagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
+        final PagerAdapter pagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
         mainContainer.setAdapter(pagerAdapter);
-        //mainContainer.setCurrentItem(1); //if not first start up
+
+        SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0); // Get preferences file (0 = no option flags set)
+        boolean firstRun = settings.getBoolean("firstRun", true); // Is it first run? If not specified, use "true"
+
+        if (firstRun) {
+            mainContainer.setCurrentItem(0);
+
+            SharedPreferences.Editor editor = settings.edit(); // Open the editor for our settings
+            editor.putBoolean("firstRun", false); // It is no longer the first run
+            editor.commit(); // Save all changed settings
+        } else {
+            mainContainer.setCurrentItem(1);
+        }
+
+        mainContainer.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(final int position, final float v, final int i2) {
+            }
+
+            @Override
+            public void onPageSelected(final int position) {
+                Fragment fragment = (Fragment) pagerAdapter.instantiateItem(mainContainer, position);
+                if (fragment != null && mainContainer.getCurrentItem() == 0) {
+                    ((IntroFragment)fragment).setCurrentIntroFragment();
+                }
+            }
+
+            @Override
+            public void onPageScrollStateChanged(final int position) {
+            }
+        });
     }
 
     private class ScreenSlidePagerAdapter extends FragmentStatePagerAdapter {

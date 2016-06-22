@@ -1,6 +1,7 @@
 package com.framboos.socialweather.socialweather.utils;
 
 import android.content.Context;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
@@ -24,17 +25,6 @@ public class MainContainerViewPager extends ViewPager {
             return false;
         } else {
             return super.onInterceptTouchEvent(event);
-        }
-    }
-
-    @Override
-    public boolean onTouchEvent(MotionEvent event) {
-        // Never allow swiping to switch between pages
-        if(this.getCurrentItem() == 1) {
-            // Never allow swiping to switch between pages
-            return false;
-        } else {
-            return super.onTouchEvent(event);
         }
     }
 }

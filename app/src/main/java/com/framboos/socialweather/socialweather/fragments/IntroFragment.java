@@ -4,9 +4,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
-import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,22 +12,26 @@ import android.view.ViewGroup;
 import com.framboos.socialweather.socialweather.R;
 
 public class IntroFragment extends Fragment {
+    private ViewPager introContainer;
+    public static int toFragment = 0;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View result = inflater.inflate(R.layout.intro_view, container, false);
 
-        ViewPager introContainer = (ViewPager) result.findViewById(R.id.intro_container_view);
+        introContainer = (ViewPager) result.findViewById(R.id.intro_container_view);
         introContainer.setAdapter(new ScreenSlidePagerAdapter(getChildFragmentManager()));
-        introContainer.setCurrentItem(2);
 
         return result;
     }
 
-    @Override
-    public void onHiddenChanged(boolean hidden) {
-        Log.w("shit got real", "yeash!");
+    public void setCurrentIntroFragment(int position) {
+        introContainer.setCurrentItem(position, false);
+    }
+
+    public void setCurrentIntroFragment() {
+        this.setCurrentIntroFragment(toFragment);
     }
 
     public class ScreenSlidePagerAdapter extends FragmentStatePagerAdapter {
