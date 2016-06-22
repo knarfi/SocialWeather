@@ -11,8 +11,8 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="#ffffff"
-        android:text="Swipe through photos"
-        android:id="@+id/intro_part2_title"
+        android:text="Upload your own"
+        android:id="@+id/intro_part4_title"
         android:textSize="17dp"
         android:layout_marginTop="20dp"
         android:textStyle="bold"
@@ -23,10 +23,11 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="#ffffff"
-        android:text="Swipe left and right through gorgeous weather photos from around the world."
-        android:id="@+id/intro_part2_text"
+        android:text="Help the community grow by uploading your own weather pictures!"
+        android:id="@+id/intro_part4_text"
         android:textSize="17dp"
         android:layout_marginTop="20dp"
         android:gravity="center"
         android:layout_gravity="center_horizontal" />
+
 </LinearLayout>

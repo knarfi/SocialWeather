@@ -2,6 +2,7 @@ package com.framboos.socialweather.socialweather.activities;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
@@ -12,12 +13,27 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.framboos.socialweather.socialweather.R;
 import com.framboos.socialweather.socialweather.fragments.*;
 import com.framboos.socialweather.socialweather.utils.MainContainerViewPager;
+import com.framboos.socialweather.socialweather.utils.WeatherPost;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
 
 public class MainContainerActivity extends FragmentActivity {
     public static final String PREFS_NAME = "SocialWeatherPrefsFile";
+
+    public static ArrayList<WeatherPost> postsList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +75,43 @@ public class MainContainerActivity extends FragmentActivity {
             public void onPageScrollStateChanged(final int position) {
             }
         });
+
+        String url ="http://intern.robbytu.net:8000/api/posts/get";
+
+        JsonObjectRequest jsObjRequest = new JsonObjectRequest
+        (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    JSONArray posts = response.getJSONObject("data").getJSONArray("posts");
+                    PhotoGalleryFragment.numberOfPosts = response.getJSONObject("data").getJSONArray("posts").length();
+
+                    for(int i = 0; i < posts.length(); i++) {
+                        JSONObject post = posts.getJSONObject(i);
+                        String postURL = response.getJSONObject("data").getJSONObject("photos").getJSONObject(post.getString("photo_id")).getString("image");
+
+                        WeatherPost weatherPost = new WeatherPost(postURL);
+                        postsList.add(weatherPost);
+
+                        weatherPost.temperature = post.getJSONObject("weather").getString("temperature");
+                        weatherPost.weatherType = post.getJSONObject("weather").getInt("weather_type");
+                    }
+                } catch (JSONException error) {
+                    error.printStackTrace();
+                }
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                // Error handling
+                System.out.println("Something went wrong!");
+                error.printStackTrace();
+            }
+        });
+        // Add the request to the queue
+        Volley.newRequestQueue(this).add(jsObjRequest);
     }
 
     private class ScreenSlidePagerAdapter extends FragmentStatePagerAdapter {
@@ -72,7 +125,6 @@ public class MainContainerActivity extends FragmentActivity {
 
         @Override
         public Fragment getItem(int position) {
-            Log.w("i got here", "lel");
             switch(position) {
                 case 0:
                     return introFragment;

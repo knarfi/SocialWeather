@@ -1,13 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:paddingTop="30dp"
+    android:paddingLeft="20dp"
+    android:paddingRight="30dp">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="I am intro view part 3"
-        android:id="@+id/textView30"
+        android:textColor="#ffffff"
+        android:text="Engage in the conversation"
+        android:id="@+id/intro_part3_title"
+        android:textSize="17dp"
+        android:layout_marginTop="20dp"
+        android:textStyle="bold"
+        android:layout_gravity="center_horizontal" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#ffffff"
+        android:text="Swip up to look at the comments or place a new one yourself."
+        android:id="@+id/intro_part3_text"
+        android:textSize="17dp"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
         android:layout_gravity="center_horizontal" />
 </LinearLayout>

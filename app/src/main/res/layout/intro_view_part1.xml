@@ -1,13 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:paddingTop="30dp"
+    android:paddingLeft="20dp"
+    android:paddingRight="30dp">
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/logo" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="i am intro view part 1"
-        android:id="@+id/textView28"
+        android:textColor="#ffffff"
+        android:text="Uitleg over wat dit is"
+        android:id="@+id/intro_part1_text"
+        android:textSize="17dp"
         android:layout_gravity="center_horizontal" />
 </LinearLayout>

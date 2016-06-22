@@ -1,11 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary">
 
-    <android.support.v4.view.ViewPager
-        android:id="@+id/intro_container_view"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentBottom="true"></android.support.v4.view.ViewPager>
+        android:layout_height="match_parent">
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/intro_container_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentBottom="true"></android.support.v4.view.ViewPager>
+
+        <LinearLayout
+            android:id="@+id/android_frame_layout"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="715px"
+            android:layout_marginLeft="160px"
+            android:layout_marginRight="160px"
+            android:background="@color/white"
+            android:layout_marginBottom="-715dp"
+            android:clickable="true">
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/android_photo_gallery_container_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentBottom="true"
+                android:clickable="true"></android.support.v4.view.ViewPager>
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/android_frame"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/android_frame_smaller_test"
+            android:layout_marginTop="1930px"
+            android:layout_marginBottom="-1930px" />
+
+    </RelativeLayout>
+
+
 </LinearLayout>

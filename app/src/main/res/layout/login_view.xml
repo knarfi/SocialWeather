@@ -1,14 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:paddingTop="30dp"
+    android:paddingLeft="20dp"
+    android:paddingRight="30dp">
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/logo" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="hier log je in, en dat doe je maar gewoon"
-        android:id="@+id/textView8"
+        android:textColor="#ffffff"
+        android:text="In order to be able to post, like and comment on SocialWeather, you will need to create an account. You can alternatively skip this step for now."
+        android:id="@+id/intro_part1_text"
+        android:layout_marginTop="10dp"
+        android:textSize="17dp"
+        android:gravity="center"
+        android:layout_gravity="center_horizontal" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:inputType="textEmailAddress"
+        android:id="@+id/editText2"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="100dp" />
+        android:ellipsize="start"
+        android:layout_marginTop="20dp"
+        android:textColor="#ffffff"
+        android:hint="Email address"
+        android:singleLine="true"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Continue"
+        android:id="@+id/action_continue"
+        android:layout_marginTop="50dp"
+        android:layout_gravity="center_horizontal" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Skip for now"
+        android:id="@+id/action_skip"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center_horizontal" />
+
 </LinearLayout>

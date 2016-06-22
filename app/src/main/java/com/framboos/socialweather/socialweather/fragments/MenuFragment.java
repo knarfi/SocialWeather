@@ -51,7 +51,7 @@ public class MenuFragment extends Fragment {
         Button loginButton = (Button) view.findViewById(R.id.action_login);
         loginButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                IntroFragment.toFragment = 3;
+                IntroFragment.toFragment = 4;
                 mainContainer.setCurrentItem(0, true);
             }
         });

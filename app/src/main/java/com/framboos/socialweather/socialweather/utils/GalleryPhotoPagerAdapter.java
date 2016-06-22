@@ -20,13 +20,11 @@ public class GalleryPhotoPagerAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        // TODO: fetch this from a shared data model instance
         return (position == PHOTO_FRAGMENT) ? photoFragment : photoCommentsFragment;
     }
 
     @Override
     public int getCount() {
-        // TODO: fetch this from a shared data model instance
         return 2;
     }
 }

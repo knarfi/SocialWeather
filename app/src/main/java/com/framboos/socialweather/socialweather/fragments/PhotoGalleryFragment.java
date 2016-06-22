@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import com.framboos.socialweather.socialweather.R;
 
 public class PhotoGalleryFragment extends Fragment {
+    public static int numberOfPosts;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -19,7 +20,8 @@ public class PhotoGalleryFragment extends Fragment {
         View result = inflater.inflate(R.layout.photo_gallery_view, container, false);
 
         ViewPager photoGalleryContainer = (ViewPager) result.findViewById(R.id.photo_gallery_container_view);
-        photoGalleryContainer.setAdapter(new ScreenSlidePagerAdapter(getChildFragmentManager()));
+        ScreenSlidePagerAdapter adapter = new ScreenSlidePagerAdapter(getChildFragmentManager());
+        photoGalleryContainer.setAdapter(adapter);
 
         return result;
     }
@@ -32,14 +34,16 @@ public class PhotoGalleryFragment extends Fragment {
 
         @Override
         public Fragment getItem(int position) {
-            // TODO: fetch this from a shared data model instance
-            return new GalleryPhotoFragment();
+            GalleryPhotoFragment galleryPhotoFragment = new GalleryPhotoFragment();
+            if(position > numberOfPosts)
+                position = numberOfPosts;
+            galleryPhotoFragment.id = position;
+            return galleryPhotoFragment;
         }
 
         @Override
         public int getCount() {
-            // TODO: fetch this from a shared data model instance
-            return 5;
+            return 50;
         }
     }
 }

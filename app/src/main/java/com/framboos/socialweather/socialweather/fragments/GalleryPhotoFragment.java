@@ -2,10 +2,14 @@ package com.framboos.socialweather.socialweather.fragments;
 
 import android.content.res.Resources;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
+import android.os.AsyncTask;
 import android.os.Handler;
 import android.os.Looper;
+import android.os.StrictMode;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.util.TypedValue;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -15,12 +19,27 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.framboos.socialweather.socialweather.R;
+import com.framboos.socialweather.socialweather.activities.MainContainerActivity;
 import com.framboos.socialweather.socialweather.utils.Blurrable;
 import com.framboos.socialweather.socialweather.utils.GalleryPhotoPagerAdapter;
 import com.framboos.socialweather.socialweather.utils.VerticalViewPager;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
+
 public class GalleryPhotoFragment extends Fragment {
+    public int id;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -31,6 +50,22 @@ public class GalleryPhotoFragment extends Fragment {
         // 'creates' the vertical view pager.
         VerticalViewPager pagerView = (VerticalViewPager) result.findViewById(R.id.vertical_photo_view_pager);
         pagerView.setAdapter(new GalleryPhotoPagerAdapter(getChildFragmentManager()));
+
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
+                .permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+        try {
+            ImageView originalImageView = (ImageView) result.findViewById(R.id.originalPhoto);
+            URL newurl = new URL(MainContainerActivity.postsList.get(id).imageURL);
+            Bitmap bitmap = BitmapFactory.decodeStream(newurl.openConnection().getInputStream());
+            originalImageView.setImageBitmap(bitmap);
+        } catch (MalformedURLException e) {
+            System.out.println("whoa easy there!");
+            e.printStackTrace();
+        } catch (IOException e) {
+            System.out.println("whoa easier there!");
+            e.printStackTrace();
+        }
 
         return result;
     }

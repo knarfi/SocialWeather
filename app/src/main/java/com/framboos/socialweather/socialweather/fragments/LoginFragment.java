@@ -12,6 +12,10 @@ public class LoginFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.login_view, container, false);
+        View result = inflater.inflate(R.layout.intro_view, container, false);
+
+
+
+        return result;
     }
 }
