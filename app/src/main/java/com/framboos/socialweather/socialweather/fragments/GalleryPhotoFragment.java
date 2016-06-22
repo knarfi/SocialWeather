@@ -65,6 +65,9 @@ public class GalleryPhotoFragment extends Fragment {
         } catch (IOException e) {
             System.out.println("whoa easier there!");
             e.printStackTrace();
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println("whoa easiest there!");
+            e.printStackTrace();
         }
 
         return result;

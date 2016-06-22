@@ -76,7 +76,7 @@ public class MainContainerActivity extends FragmentActivity {
             }
         });
 
-        String url ="http://intern.robbytu.net:8000/api/posts/get";
+        String url ="";
 
         JsonObjectRequest jsObjRequest = new JsonObjectRequest
         (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
