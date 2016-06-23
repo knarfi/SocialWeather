@@ -14,9 +14,7 @@ public class CommentsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View result = inflater.inflate(R.layout.information_view, container, false);
-
-
+        View result = inflater.inflate(R.layout.comments_view, container, false);
 
         return result;
     }
