@@ -19,7 +19,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="#ffffff"
-        android:text="Uitleg over wat dit is"
+        android:text="Welcome to SocialWeather, swipe to get to know the app."
         android:id="@+id/intro_part1_text"
         android:textSize="17dp"
         android:layout_gravity="center_horizontal" />

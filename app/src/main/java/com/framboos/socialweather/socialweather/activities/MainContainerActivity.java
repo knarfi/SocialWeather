@@ -49,6 +49,38 @@ public class MainContainerActivity extends FragmentActivity {
 
             @Override
             public void onResponse(JSONObject response) {
+                try {
+                    JSONArray posts = response.getJSONObject("data").getJSONArray("posts");
+                    PhotoGalleryFragment.numberOfPosts = response.getJSONObject("data").getJSONArray("posts").length();
+
+                    for(int i = 0; i < posts.length(); i++) {
+                        JSONObject post = posts.getJSONObject(i);
+                        String postURL = response.getJSONObject("data").getJSONObject("photos").getJSONObject(post.getString("photo_id")).getString("image");
+
+                        WeatherPost weatherPost = new WeatherPost(postURL);
+                        postsList.add(weatherPost);
+
+                        weatherPost.temperature = post.getJSONObject("weather").getString("temperature");
+                        weatherPost.weatherType = post.getJSONObject("weather").getInt("weather_type");
+                        weatherPost.location = post.getJSONObject("location").getString("city");
+                        weatherPost.likes = post.getString("number_of_likes");
+                        weatherPost.profileName = response.getJSONObject("data").getJSONObject("users").getJSONObject(String.valueOf(post.getInt("user_id"))).getString("name");
+                        weatherPost.profileURL = response.getJSONObject("data").getJSONObject("users").getJSONObject(post.getString("user_id")).getString("picture");
+
+                        if(response.getJSONObject("data").getJSONObject("comments").has(post.getString("user_id"))) {
+                            JSONArray comments = response.getJSONObject("data").getJSONObject("comments").getJSONArray(post.getString("user_id"));
+                            for(int i2 = 0; i2 < comments.length(); i2++) {
+                                ArrayList<String> commentsArray = new ArrayList<>();
+                                commentsArray.add(response.getJSONObject("photos").getJSONObject(comments.getJSONObject(i2).getString("photo_id")).getString("image"));
+                                commentsArray.add(comments.getJSONObject(i2).getString("comment"));
+                                weatherPost.comments.add(commentsArray);
+                            }
+                        }
+                    }
+                } catch (JSONException error) {
+                    error.printStackTrace();
+                }
+
                 final MainContainerViewPager mainContainer = (MainContainerViewPager) findViewById(R.id.main_container_view);
 
                 final PagerAdapter pagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
@@ -84,29 +116,6 @@ public class MainContainerActivity extends FragmentActivity {
                     public void onPageScrollStateChanged(final int position) {
                     }
                 });
-
-                try {
-                    JSONArray posts = response.getJSONObject("data").getJSONArray("posts");
-                    PhotoGalleryFragment.numberOfPosts = response.getJSONObject("data").getJSONArray("posts").length();
-
-                    for(int i = 0; i < posts.length(); i++) {
-                        JSONObject post = posts.getJSONObject(i);
-                        String postURL = response.getJSONObject("data").getJSONObject("photos").getJSONObject(post.getString("photo_id")).getString("image");
-
-                        WeatherPost weatherPost = new WeatherPost(postURL);
-                        postsList.add(weatherPost);
-
-                        weatherPost.temperature = post.getJSONObject("weather").getString("temperature");
-                        weatherPost.weatherType = post.getJSONObject("weather").getInt("weather_type");
-                        weatherPost.likes = post.getString("number_of_likes");
-                        weatherPost.profileName = response.getJSONObject("user").getJSONObject(post.getString("user_id")).getString("name");
-                        weatherPost.profileURL = response.getJSONObject("user").getJSONObject(post.getString("user_id")).getString("picture");
-                        weatherPost.location = post.getJSONObject("location").getString("city");
-                    }
-                } catch (JSONException error) {
-                    error.printStackTrace();
-                }
-
             }
         }, new Response.ErrorListener() {
             @Override

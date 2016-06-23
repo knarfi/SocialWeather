@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.framboos.socialweather.socialweather.R;
 import com.framboos.socialweather.socialweather.activities.MainContainerActivity;
+import com.framboos.socialweather.socialweather.utils.WeatherPost;
 
 import org.w3c.dom.Text;
 
@@ -27,11 +28,20 @@ public class PhotoFragment extends Fragment {
         TextView temperature = (TextView) result.findViewById(R.id.temperature);
         ImageView weatherTypeImage = (ImageView) result.findViewById(R.id.weather_type_image);
         TextView weatherType = (TextView) result.findViewById(R.id.weather_type);
+        TextView profileName = (TextView) result.findViewById(R.id.profileName);
+        TextView location = (TextView) result.findViewById(R.id.location);
+        TextView likes = (TextView) result.findViewById(R.id.likes);
+        ImageView profile = (ImageView) result.findViewById(R.id.profile);
 
         try {
-            temperature.setText(MainContainerActivity.postsList.get(id).temperature + "º");
+            WeatherPost post = MainContainerActivity.postsList.get(id);
 
-            switch(MainContainerActivity.postsList.get(id).weatherType) {
+            temperature.setText(post.temperature + "º");
+            profileName.setText(post.profileName);
+            location.setText(post.location.toUpperCase());
+            likes.setText(post.likes);
+
+            switch(post.weatherType) {
                 case 0:
                 default:
                     // sunny

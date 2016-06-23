@@ -14,7 +14,10 @@ public class CommentsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Return an instance of the intro view so it'll be the root view for this fragment
-        return inflater.inflate(R.layout.comments_view, container, false);
+        View result = inflater.inflate(R.layout.information_view, container, false);
+
+
+
+        return result;
     }
 }
