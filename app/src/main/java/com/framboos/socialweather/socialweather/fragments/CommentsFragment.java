@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import com.framboos.socialweather.socialweather.R;
 
 public class CommentsFragment extends Fragment {
+    public int id;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

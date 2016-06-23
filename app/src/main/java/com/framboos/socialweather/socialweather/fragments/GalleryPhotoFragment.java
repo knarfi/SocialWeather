@@ -49,7 +49,7 @@ public class GalleryPhotoFragment extends Fragment {
 
         // 'creates' the vertical view pager.
         VerticalViewPager pagerView = (VerticalViewPager) result.findViewById(R.id.vertical_photo_view_pager);
-        pagerView.setAdapter(new GalleryPhotoPagerAdapter(getChildFragmentManager()));
+        pagerView.setAdapter(new GalleryPhotoPagerAdapter(getChildFragmentManager(), id));
 
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
                 .permitAll().build();

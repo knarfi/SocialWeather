@@ -10,17 +10,28 @@ import com.framboos.socialweather.socialweather.fragments.PhotoFragment;
 public class GalleryPhotoPagerAdapter extends FragmentStatePagerAdapter {
     private int PHOTO_FRAGMENT = 0;
     private int PHOTO_COMMENT_FRAGMENT = 1;
-
-    PhotoFragment photoFragment = new PhotoFragment();
-    CommentsFragment photoCommentsFragment = new CommentsFragment();
+    private int postID;
 
     public GalleryPhotoPagerAdapter(FragmentManager fm) {
         super(fm);
     }
 
+    public GalleryPhotoPagerAdapter(FragmentManager fm, int postID) {
+        this(fm);
+        this.postID = postID;
+    }
+
     @Override
     public Fragment getItem(int position) {
-        return (position == PHOTO_FRAGMENT) ? photoFragment : photoCommentsFragment;
+        if(position == PHOTO_FRAGMENT) {
+            PhotoFragment photoFragment = new PhotoFragment();
+            photoFragment.id = postID;
+            return photoFragment;
+        } else {
+            CommentsFragment photoCommentsFragment = new CommentsFragment();
+            photoCommentsFragment.id = postID;
+            return photoCommentsFragment;
+        }
     }
 
     @Override
